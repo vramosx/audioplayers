@@ -550,7 +550,7 @@ class AudioPlayer {
 
     if (!kReleaseMode && Platform.isAndroid && player == null) {
       final oldPlayer = AudioPlayer(playerId: playerId);
-      await oldPlayer.release();
+      _channel.invokeMethod('release', {'playerId': playerId});
       oldPlayer.dispose();
       players.remove(playerId);
       return;
